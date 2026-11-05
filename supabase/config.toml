@@ -1,0 +1,9 @@
+# Configuração das Edge Functions (verify_jwt como está no projeto publicado)
+[functions.perguntar]
+verify_jwt = false
+
+[functions.testar-ia]
+verify_jwt = false
+
+[functions.entrar-sool]
+verify_jwt = false

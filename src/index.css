@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Identidade visual do SOOL2.ai: claro e minimalista, verde da marca nas ações e itens ativos.
+   Cores em RGB (sem vírgulas) para o Tailwind aplicar transparência: rgb(var(--c-x) / 0.4). */
+:root {
+  --c-primaria-escura: 46 125 50;
+  --c-primaria: 67 160 71;
+  --c-primaria-botao: 46 125 50;
+  --c-primaria-clara: 200 230 201;
+  --c-acao: 46 125 50;
+  --c-acao-desativada: 238 246 239;
+  --c-icone-acao: 27 94 32;
+  --c-fundo: 247 248 250;
+  --c-divisor: 238 240 243;
+  --c-borda: 227 230 235;
+  --c-texto: 75 85 99;
+  --c-texto-secundario: 107 114 128;
+  --c-texto-forte: 17 24 39;
+  --c-placeholder: 156 163 175;
+  --c-texto-verde: 46 125 50;
+  --c-erro: 220 38 38;
+  --cor-scrollbar: #d1d5db;
+  color-scheme: light;
+}
+
+/* Fundo preto */
+.dark {
+  --c-primaria: 74 179 99;
+  --c-primaria-clara: 30 58 37;
+  --c-acao-desativada: 22 38 27;
+  --c-icone-acao: 139 211 160;
+  --c-fundo: 10 13 18;
+  --c-divisor: 31 37 46;
+  --c-borda: 43 51 62;
+  --c-texto: 196 204 213;
+  --c-texto-secundario: 139 148 160;
+  --c-texto-forte: 243 244 246;
+  --c-placeholder: 107 114 128;
+  --c-texto-verde: 102 199 128;
+  --c-erro: 248 113 113;
+  --cor-scrollbar: #374151;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--c-fundo));
+  color: rgb(var(--c-texto));
+  font-family: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: var(--cor-scrollbar) transparent;
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--c-texto-verde));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .botao-acao {
+    @apply inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-acao text-white shadow-suave transition;
+  }
+  .botao-acao-rotulo {
+    @apply inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg bg-acao px-4 text-sm font-medium text-white shadow-suave transition;
+  }
+  .botao-acao:hover:not(:disabled),
+  .botao-acao-rotulo:hover:not(:disabled) {
+    background-color: #256b29;
+  }
+  .botao-acao:disabled,
+  .botao-acao-rotulo:disabled {
+    @apply cursor-not-allowed bg-[#E5E7EB] text-[#9CA3AF] shadow-none;
+  }
+  .botao-secundario {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-borda bg-white px-4 text-sm font-medium text-texto-forte shadow-suave transition hover:border-[#D1D5DB] hover:bg-[#F9FAFB] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .botao-perigo {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-erro px-4 text-sm font-medium text-white shadow-suave transition hover:brightness-95 disabled:opacity-50;
+  }
+  .botao-icone {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg text-texto-secundario transition hover:bg-[#F3F4F6] hover:text-texto-forte disabled:opacity-40;
+  }
+  .campo {
+    @apply h-10 w-full rounded-lg border border-borda bg-white px-3 text-sm text-texto-forte shadow-suave transition placeholder:text-placeholder focus:border-primaria-escura focus:outline-none focus:ring-4 focus:ring-primaria-escura/10 disabled:bg-[#F9FAFB] disabled:text-texto-secundario;
+  }
+  .rotulo {
+    @apply mb-1.5 block text-sm font-medium text-texto-forte;
+  }
+  .titulo-pagina {
+    @apply text-2xl font-semibold tracking-tight text-texto-forte;
+  }
+  .subtitulo-pagina {
+    @apply mt-1 text-sm text-texto-secundario;
+  }
+  .cartao {
+    @apply rounded-xl border border-divisor bg-white shadow-suave;
+  }
+}
+
+/* ---------- Fundo preto: superfícies e cores fixas usadas nas telas ---------- */
+.dark .bg-white,
+.dark .botao-secundario,
+.dark .campo,
+.dark .cartao {
+  background-color: #12171e;
+}
+.dark .bg-\[\#F9FAFB\],
+.dark .bg-\[\#FAFBFC\],
+.dark .bg-\[\#F3F3F3\],
+.dark .hover\:bg-\[\#FAFBFC\]:hover,
+.dark .hover\:bg-\[\#F9FAFB\]:hover,
+.dark .botao-secundario:hover:not(:disabled),
+.dark .campo:disabled {
+  background-color: #171d25;
+}
+.dark .botao-secundario:hover:not(:disabled) {
+  border-color: #3a4450;
+}
+.dark .bg-\[\#F3F4F6\] {
+  background-color: #1d242d;
+}
+.dark .hover\:bg-\[\#F3F4F6\]:hover,
+.dark .botao-icone:hover:not(:disabled),
+.dark .hover\:bg-black\/5:hover,
+.dark .focus\:bg-black\/5:focus,
+.dark .bg-black\/5 {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.dark .bg-\[\#EEF6EF\] {
+  background-color: rgba(102, 199, 128, 0.14);
+}
+.dark .hover\:bg-\[\#f1f8f1\]:hover {
+  background-color: rgba(102, 199, 128, 0.12);
+}
+.dark .bg-\[\#FEF2F2\],
+.dark .bg-\[\#FDECEA\] {
+  background-color: rgba(248, 113, 113, 0.1);
+}
+.dark .border-\[\#FECACA\],
+.dark .border-\[\#F5C6C6\] {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+.dark .bg-\[\#FEF6E7\] {
+  background-color: rgba(245, 180, 60, 0.12);
+}
+.dark .border-\[\#FDE7B0\] {
+  border-color: rgba(245, 180, 60, 0.35);
+}
+.dark .text-\[\#92600A\],
+.dark .text-\[\#B7791F\] {
+  color: #f5c26b;
+}
+.dark .bg-\[\#F5FAF6\] {
+  background-color: #0f1a13;
+}
+.dark .bg-\[\#E6F2E8\],
+.dark .bg-\[\#EDF6EE\] {
+  background-color: rgba(102, 199, 128, 0.07);
+}
+.dark .botao-acao:disabled,
+.dark .botao-acao-rotulo:disabled {
+  background-color: #1f252e;
+  color: #6b7280;
+}
+.dark .shadow-suave,
+.dark .cartao,
+.dark .campo,
+.dark .botao-secundario {
+  --tw-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* Gráficos (Recharts) no fundo preto */
+.dark .recharts-cartesian-grid line {
+  stroke: #2b333e;
+}
+.dark .recharts-cartesian-axis-tick-value,
+.dark .recharts-text {
+  fill: #8b94a0;
+}
+.dark .recharts-default-tooltip {
+  background-color: #12171e !important;
+  border-color: #2b333e !important;
+}
+.dark .recharts-tooltip-label {
+  color: #f3f4f6 !important;
+}
+.dark .recharts-legend-item-text,
+.dark .recharts-tooltip-item {
+  color: #c4ccd5 !important;
+}
